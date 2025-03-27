@@ -1,5 +1,7 @@
 # CompiledLang
 
+I should write this in OCaml.
+
 Compiler that takes in a text file, tokenizes it, parses it to a parse tree, interprets that tree to produce NASM code (Mac assembly), assembles it to a binary, and runs it.
 
 https://stackoverflow.com/questions/42619995/running-assembly-code-for-mac-os-x
