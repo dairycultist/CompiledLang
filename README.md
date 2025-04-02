@@ -11,16 +11,18 @@ ASM functions just assume stuff is where it should be, which means you have to s
 registers are used for calculations and return values, the stack is used for storing stuff like variables
 
 ```
-context (uint8 x = 10, uint8 y = 20) {
-  x = x + y;
-  print(x);
-}
+(* data *)
+uint8 x = 10;
 
-==========
+(* code *)
+x = add(x, x);
+print(x);
+```
 
+```
 push 10
 push 20
-;compiled code inserted for the context
+;compiled code inserted for the function call
 ;accesses x and y by referencing positions in stack relative to stack pointer
 pop
 pop
