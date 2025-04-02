@@ -1,10 +1,10 @@
 # CompiledLang
 
-I should write this in OCaml.
+I should write this in OCaml (by stealing code from a previous project, hehe)
 
 Compiler that takes in a text file, tokenizes it, parses it to a parse tree, interprets that tree to produce NASM code (Mac assembly), assembles it to a binary, and runs it.
 
-https://stackoverflow.com/questions/42619995/running-assembly-code-for-mac-os-x
+[NASM tutorial](https://cs.lmu.edu/~ray/notes/nasmtutorial/)
 
 ASM functions just assume stuff is where it should be, which means you have to set it up so that what it assumes is there *is* there
 
