@@ -9,22 +9,22 @@ string:
 
 .globl	_main
 _main:
-	pushq	%rbp				# store stack
-	pushq	%r15
-	pushq	%rbx
+	push	%rbp				# store stack
+	push	%r15
+	push	%rbx
 
-	movl	$10, %ebx			# load 10 into... something
-	leaq	string(%rip), %r15	# load address of string into r15
+	mov		$10, %ebx			# load 10 into... something
+	lea		string(%rip), %r15	# load address of string into r15
 loop:
-	movq	%r15, %rdi			# load address of string into rdi (special address for _printf)
-	movl	%ebx, %esi
-	callq	_printf
+	mov		%r15, %rdi			# load address of string into rdi (special address for _printf)
+	mov		%ebx, %esi
+	call	_printf
 
-	decl	%ebx				# decrement
-	cmpl	$0, %ebx			# <
+	dec		%ebx				# decrement
+	cmp		$0, %ebx			# <
 	ja		loop
 	
-	popq	%rbx				# restore stack
-	popq	%r15
-	popq	%rbp
-	retq
+	pop		%rbx				# restore stack
+	pop		%r15
+	pop		%rbp
+	ret

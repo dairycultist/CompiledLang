@@ -6,6 +6,8 @@
 // https://cs.lmu.edu/~ray/notes/nasmtutorial/
 // https://github.com/pkivolowitz/asm_book
 
+// info about registers and instructions https://www.cs.virginia.edu/~evans/cs216/guides/x86.html
+
 // ASM functions just assume stuff is where it should be, which means you have
 // to set it up so that what it assumes is there *is* there
 
