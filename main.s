@@ -20,8 +20,8 @@ loop:
 	movl	%ebx, %esi
 	callq	_printf
 
-	decl	%ebx				# decrease
-	cmpl	$0, %ebx			# compare (NOT literal, it has something to do with the argument's size in bytes)
+	decl	%ebx				# decrement
+	cmpl	$0, %ebx			# <
 	ja		loop
 	
 	popq	%rbx				# restore stack
