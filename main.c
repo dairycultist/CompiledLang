@@ -7,6 +7,8 @@
 // https://github.com/pkivolowitz/asm_book
 
 // info about registers and instructions https://www.cs.virginia.edu/~evans/cs216/guides/x86.html
+// .asciz documentation and stuff https://sourceware.org/binutils/docs/as/index.html#SEC_Contents
+// b, w, l, q suffixes https://sourceware.org/binutils/docs/as/i386_002dVariations.html
 
 // ASM functions just assume stuff is where it should be, which means you have
 // to set it up so that what it assumes is there *is* there

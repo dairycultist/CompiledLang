@@ -3,6 +3,9 @@
 string:
 	.asciz	"cat: %d\n"
 
+#bytes:
+#	.byte 10, 10
+
 
 
 .section	__TEXT,__text,regular,pure_instructions
