@@ -8,7 +8,11 @@
 
 int main() {
 
-    printf("cats\n");
+    int x = 50;
+    while (x > 0) {
+        printf("%d\n", x);
+        x--;
+    }
     return 0;
 
 }
