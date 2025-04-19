@@ -1,4 +1,4 @@
-# CompiledLang
+![Sapphire logo](sapphire.png)
 
 sapphire - high level programming language that compiles down to C. compiler written in OCaml (by stealing code from a previous project, hehe)
 
