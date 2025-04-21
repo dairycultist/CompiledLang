@@ -5,7 +5,11 @@ sapphire - high level programming language that compiles down to C. compiler wri
 Compiler that takes in a text file, tokenizes it, parses it to an AST, and interprets that tree to produce C code
 
 ```
-for x:[0,16) {
+for int32 x:[0,16) {
+  print(x);
+}
+
+for string x in ["cat", "dog", "fish"] {
   print(x);
 }
 ```
