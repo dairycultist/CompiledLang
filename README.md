@@ -7,7 +7,7 @@ Compiler that takes in a text file, tokenizes it, parses it to an AST, and inter
 ```
 print("What is your name? ");
 
-byte[] name = read_str();
+byte[] name = read_str(); // returns a byte array representing the bytes in the input string. arrays know their length
 int32 name_length = bytecount(name); // no terminating \0
 
 print("Your name is " + name + ". It is " + name_length + " characters long.");
