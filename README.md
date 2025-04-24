@@ -5,10 +5,10 @@ sapphire - a high(ish) level, strongly-typed programming language that compiles 
 Compiler that takes in a text file, tokenizes it, parses it to an AST, and interprets that tree to produce C code
 
 ```
-print("What is your name? ");
+print("What is your name? >");
 
 string name = read_str();
 int name_length = strlen(name);
 
-print("Your name is [#]. It is [#] characters long.", name, name_length);
+print("Your name is [#]. It is [#] characters long.\n", name, name_length);
 ```
