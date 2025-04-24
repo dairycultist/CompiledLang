@@ -15,10 +15,10 @@ print("Your name is [#]. It is [#] characters long.\n", name, name_length);
 
 TYPE ::= `int` | `string` | `bool`
 
-VARIABLE ::= `/[a-zA-Z0-9_]+/g`;
+VARIABLE ::= `/[a-zA-Z0-9_]+/g`
 
 DECLARATION ::= TYPE VARIABLE = EXPRESSION; | TYPE VARIABLE;
 
-STATEMENT
+STATEMENT ::= DECLARATION | ...
 
 EXPRESSION
