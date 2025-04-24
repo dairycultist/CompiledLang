@@ -10,5 +10,5 @@ print("What is your name? ");
 string name = read_str();
 int name_length = strlen(name);
 
-print("Your name is " | name | ". It is " | name_length | " characters long.");
+print("Your name is [#]. It is [#] characters long.", name, name_length);
 ```
