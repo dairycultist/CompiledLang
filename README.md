@@ -22,7 +22,7 @@ print("Your name is [#]. It is [#] characters long.\n", name, name_length);
 
 <assignment> ::= <variable> = <expression>;
 
-<print> ::= ...
+<print> ::= (print <expression>)
 
 <statement> ::= <declaration> | <assignment> | <print>
 
