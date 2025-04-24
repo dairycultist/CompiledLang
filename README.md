@@ -16,6 +16,8 @@ print("Your name is [#]. It is [#] characters long.\n", name, name_length);
 ```
 <type> ::= int | string | bool
 
+<value> ::= /.+/g
+
 <variable> ::= /[a-zA-Z0-9_]+/g
 
 <declaration> ::= <type> <variable> = <expression>; | <type> <variable>;
