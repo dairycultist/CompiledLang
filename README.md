@@ -5,11 +5,20 @@ sapphire - high level, strongly-typed programming language that compiles down to
 Compiler that takes in a text file, tokenizes it, parses it to an AST, and interprets that tree to produce C code
 
 ```
-for int32 x between [0,16) {
-  print(x);
+for (int x = 0->16 | int y = 0->16) {
+  print(x + " " + y);
 }
+```
 
-for string x in ["cat", "dog", "fish"] {
-  print(x);
+```
+type Vec2(int, int);
+
+Vec2 first = Vec2(10, 20);
+* second = first;
+
+print(first[0] + first[1]);
+
+match (second) {
+  Vec2 -> print(second[0] + second[1]);
 }
 ```
