@@ -8,9 +8,9 @@ Compiler that takes in a text file, tokenizes it, parses it to an AST, and inter
 print("What is your name? ");
 
 byte[] name = read_str();
-int8 name_length = bytecount(name) - 1;
+int32 name_length = bytecount(name) - 1;
 
 print("Your name is " + name + ". It is " + name_length + " characters long.");
 print("The first character is " + name[0] + ".");
-print("Its unicode value is " + bytes_as_int8(name, 0) + ".");
+print("Its unicode value is " + byte_as_int8(name[0]) + ".");
 ```
