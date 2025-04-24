@@ -26,5 +26,5 @@ print("Your name is [#]. It is [#] characters long.\n", name, name_length);
 
 <statement> ::= <declaration> | <assignment> | <print>
 
-<expression> ::= (/[+-*/]|and|or/g <expression> <expression>) | (not <expression>) | /.+/g
+<expression> ::= (/[+-*/]|and|or/g <expression> <expression>) | (not <expression>) | /"[^"]*"/g | /[0-9]+/g | /true|false/g
 ```
