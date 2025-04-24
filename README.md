@@ -20,7 +20,11 @@ print("Your name is [#]. It is [#] characters long.\n", name, name_length);
 
 <declaration> ::= <type> <variable> = <expression>; | <type> <variable>;
 
-<statement> ::= <declaration> | ...
+<assignment> ::= <variable> = <expression>;
+
+<print> ::= ...
+
+<statement> ::= <declaration> | <assignment> | <print>
 
 <expression> ::= (/[+-*/]|and|or/g <expression> <expression>) | (not <expression>) | /.+/g
 ```
