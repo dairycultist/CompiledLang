@@ -4,6 +4,8 @@ sapphire - a high(ish) level, strongly-typed programming language that compiles 
 
 Compiler that takes in a text file, tokenizes it, parses it to an AST, and interprets that tree to produce C code
 
+garbage collection -- gotta store how many references to an object there are, and whenever it decrements see if we should free the memory
+
 ```
 print("What is your name? >");
 
