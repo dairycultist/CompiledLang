@@ -1,3 +1,9 @@
+(*
+ * This file contains helper functions for the files parser_stmt.ml and parser_expr.ml,
+ * as well as a parse function that takes in a list of tokens and returns a list of statements
+ * in order of execution.
+ *)
+
 (* Return the next token in the token list, throwing an error if the list is empty *)
 let lookahead (toks : token list) : token =
   match toks with

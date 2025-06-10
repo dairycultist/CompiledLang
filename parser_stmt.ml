@@ -9,8 +9,11 @@ type stmt_result = token list * stmt list
 
 
 let rec parse_stmt toks : stmt_result =
-  if toks = [] then
+  if toks = [] then (* EOF *)
     ([], [])
+  else
+  if lookahead toks = Tok_CloseCurly then (* closing a block *)
+    (toks, [])
   else
     let (toks, stmt_list1) = (
       match lookahead toks with
