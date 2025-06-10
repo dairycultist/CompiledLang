@@ -2,6 +2,11 @@ web content serving language (WCSL)
 
 designed to easily process [HTTP Requests](https://www.w3schools.com/tags/ref_httpmethods.asp) (for now just GET and POST)
 
+compiler written in OCaml which compiles code down to a [node.js webserver](https://www.geeksforgeeks.org/node-js/node-js-web-server/) (by stealing code from a previous project, hehe)
+
+Compiler that takes in a text file, tokenizes it, parses it to an AST, and interprets that tree to produce node.js code
+
+
 ### Meta statements
 
 The following are meta statements, which inform your server on how it should run. For tidiness, these should be placed at the very top of your file.
@@ -36,6 +41,4 @@ onrequest GET "/endpoint?value1=(msg)&value2=()" {
 
 `(name)` in a request description is a wildcard that matches to a variable named `name`. You can also use `()` for a wildcard that doesn't need to be assigned to a variable.
 
-compiler written in OCaml which compiles code down to a [node.js webserver](https://www.geeksforgeeks.org/node-js/node-js-web-server/) (by stealing code from a previous project, hehe)
-
-Compiler that takes in a text file, tokenizes it, parses it to an AST, and interprets that tree to produce node.js code
+If a request would be accepted by multiple `onrequest` functions, the topmost one is selected.
