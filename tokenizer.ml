@@ -13,6 +13,7 @@ exception InvalidInputException of string
 
 type token =
   | Tok_Hostname
+  | Tok_Port
   | Tok_Semicolon
   | Tok_Var of string
   | Tok_Value of string
@@ -29,11 +30,15 @@ let rec tokenize_niw input =
 
   (* keywords and identifiers *)
   else if re_match "[a-zA-Z][a-zA-Z0-9]*" input then
-    match Re.Str.matched_string input with
-    | "true" -> (Tok_Value "true")                 ::(tokenize_niw (re_remove "true" input))
-    | "false" -> (Tok_Value "false")               ::(tokenize_niw (re_remove "false" input))
-    | "hostname" -> (Tok_Hostname)                 ::(tokenize_niw (re_remove "hostname" input))
-    | var -> (Tok_Var var)                         ::(tokenize_niw (re_remove var input))
+    let x = Re.Str.matched_string input in
+    (
+      match x with
+      | "true" -> (Tok_Value "true")
+      | "false" -> (Tok_Value "false")
+      | "hostname" -> (Tok_Hostname)
+      | "port" -> (Tok_Port)
+      | var -> (Tok_Var var)
+    )::(tokenize_niw (re_remove x input))
 
   (* string literals and numbers *)
   else if re_match "\"[^\"]*\"\|-?[0-9]+" input then
