@@ -24,7 +24,6 @@ type token =
   | Tok_Var of string
   | Tok_Value of string
   | Tok_HTTPRequest of string
-  | EOF
 
 
 let re_match regex input = Re.Str.string_match (Re.Str.regexp regex) input 0
@@ -33,7 +32,7 @@ let re_remove regex input = Re.Str.substitute_first (Re.Str.regexp ("\\(" ^ rege
 (* tokenize that takes No Initial Whitespace *)
 let rec tokenize_niw input =
 
-  if String.length input = 0 then [EOF]
+  if String.length input = 0 then []
 
   (* string literals and numbers *)
   else if re_match "\"[^\"]*\"\|-?[0-9]+\|true\|false" input then
