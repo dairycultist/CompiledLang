@@ -3,18 +3,26 @@ web content serving language (WCSL)
 designed to easily process [HTTP Requests](https://www.w3schools.com/tags/ref_httpmethods.asp) (for now just GET and POST)
 
 ```
+hostname "127.0.0.1"
+port 3000
+serve_files_normally false (* treats files as endpoints that must be manually processed by the programmer *)
+
 onrequest GET(query = "/*.html") {
 
-  return FILE(query);
+  respond 200 as "text/html" with readfile(query);
 }
 
 onrequest GET(query = "/endpoint?value1=*&value2=*") {
 
-  return HTML("<body>you entered " + value1 + "</body>");
+  if (query["value2"] != "cat") {
+    respond 404 as "text/plain" with "invalid!";
+  }
+
+  respond 200 as "text/plain" with "cat here! you entered " + query["value1"];
 }
 ```
 
-written in OCaml and compiles down to a [C webserver](https://gist.github.com/laobubu/d6d0e9beb934b60b2e552c2d03e1409e)
+written in OCaml and compiles down to a [node.js webserver](https://www.geeksforgeeks.org/node-js/node-js-web-server/)
 
 ![Banner with the Sapphire programming language logo](banner.png)
 
