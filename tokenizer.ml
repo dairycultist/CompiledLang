@@ -20,10 +20,9 @@ type token =
   | Tok_CloseCurly
   | Tok_OpenParen
   | Tok_CloseParen
-  | Tok_Equal
+  | Tok_Assign
   | Tok_Var of string
   | Tok_Value of string
-  | Tok_HTTPRequest of string
 
 
 let re_match regex input = Re.Str.string_match (Re.Str.regexp regex) input 0
@@ -35,16 +34,15 @@ let rec tokenize_niw input =
   if String.length input = 0 then []
 
   (* string literals and numbers *)
-  else if re_match "\"[^\"]*\"\|-?[0-9]+\|true\|false" input then
+  else if re_match "\"[^\"]*\"\|-?[0-9]+\|true\|false\|GET\|POST" input then
     let x = Re.Str.matched_string input in
-    (Tok_Value x)::(tokenize_niw (re_remove "\"[^\"]*\"\|-?[0-9]+\|true\|false" input))
+    (Tok_Value x)::(tokenize_niw (re_remove "\"[^\"]*\"\|-?[0-9]+\|true\|false\|GET\|POST" input))
 
   (* keywords and variables *)
   else if re_match "[a-zA-Z][a-zA-Z0-9]*" input then
     let x = Re.Str.matched_string input in
     (
       match x with
-      | "GET" | "POST"      -> Tok_HTTPRequest x
       | "hostname"          -> Tok_Hostname
       | "port"              -> Tok_Port
       | "onrequest"         -> Tok_OnRequest
@@ -57,7 +55,7 @@ let rec tokenize_niw input =
   else if re_match "}" input then Tok_CloseCurly   ::(tokenize_niw (re_remove "}" input))
   else if re_match "(" input then Tok_OpenParen    ::(tokenize_niw (re_remove "(" input))
   else if re_match ")" input then Tok_CloseParen   ::(tokenize_niw (re_remove ")" input))
-  else if re_match "=" input then Tok_Equal        ::(tokenize_niw (re_remove "=" input))
+  else if re_match "=" input then Tok_Assign       ::(tokenize_niw (re_remove "=" input))
 
   else raise (InvalidInputException("Could not tokenize: " ^ input))
 
