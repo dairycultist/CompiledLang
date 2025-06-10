@@ -35,8 +35,8 @@ let rec tokenize_niw input =
     | "hostname" -> (Tok_Hostname)                 ::(tokenize_niw (re_remove "hostname" input))
     | var -> (Tok_Var var)                         ::(tokenize_niw (re_remove var input))
 
-  (* numbers *)
-  else if re_match "-?[0-9]+" input then
+  (* string literals and numbers *)
+  else if re_match "\"[^\"]*\"\|-?[0-9]+" input then
     let x = Re.Str.matched_string input in
     (Tok_Value x)                                  ::(tokenize_niw (re_remove x input))
   
