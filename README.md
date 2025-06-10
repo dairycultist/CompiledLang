@@ -1,9 +1,16 @@
 web content serving language (WCSL)
 
-```
-onrequest GET("/endpoint?value1=*&value2=*") {
+designed to easily process [HTTP Requests](https://www.w3schools.com/tags/ref_httpmethods.asp) (for now just GET and POST)
 
-  return "<body>you entered " + value1 + "</body>";
+```
+onrequest GET(query = "/*.html") {
+
+  return FILE(query);
+}
+
+onrequest GET(query = "/endpoint?value1=*&value2=*") {
+
+  return HTML("<body>you entered " + value1 + "</body>");
 }
 ```
 
