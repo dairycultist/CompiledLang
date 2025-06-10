@@ -1,3 +1,14 @@
+web content serving language (WCSL)
+
+```
+onrequest GET("/endpoint?value1=*&value2=*") {
+
+  return "<body>you entered " + value1 + "</body>";
+}
+```
+
+written in OCaml and compiles down to a [C webserver](https://gist.github.com/laobubu/d6d0e9beb934b60b2e552c2d03e1409e)
+
 ![Banner with the Sapphire programming language logo](banner.png)
 
 sapphire - a high(ish) level, strongly-typed programming language that compiles down to C. compiler written in OCaml (by stealing code from a previous project, hehe)
