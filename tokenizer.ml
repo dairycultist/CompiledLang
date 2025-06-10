@@ -1,11 +1,19 @@
+#require "re"
+open Re
+
 (* https://ocaml.org/p/re/latest/doc/Re/Str/index.html *)
 
-(* modules // eval smallCTypes utils parser *)
+(*
+  eval $(opam env)
+  dune runtest -f
+  dune utop src
+*)
 
 exception InvalidInputException of string
 
 type token =
   | Tok_Hostname
+  | Tok_Semicolon
   | Tok_Var of string
   | Tok_Value of string
   | EOF
@@ -28,14 +36,17 @@ let rec tokenize_niw input =
     | var -> (Tok_Var var)                         ::(tokenize_niw (re_remove var input))
 
   (* string *)
+  else if re_match "\"([^\"\\]|\\.|\\\n)*\"" input then
+    (Tok_Value (Re.Str.matched_string input))      ::(tokenize_niw (re_remove "\"([^\"\\]|\\.|\\\n)*\"" input))
 
   (* numbers *)
   else if re_match "-?[0-9]+" input then
     (Tok_Value (Re.Str.matched_string input))      ::(tokenize_niw (re_remove "-?[0-9]+" input))
   
   (* non alphanumeric *)
+  else if re_match ";" input then Tok_Semicolon    ::(tokenize_niw (re_remove ";" input))
+
   (* else if re_match "-" input then Tok_Sub::(tokenize_niw (re_remove "-" input))
-  else if re_match ";" input then Tok_Semi::(tokenize_niw (re_remove ";" input))
   else if re_match "(" input then Tok_LParen::(tokenize_niw (re_remove "(" input))
   else if re_match ")" input then Tok_RParen::(tokenize_niw (re_remove ")" input))
   else if re_match "{" input then Tok_LBrace::(tokenize_niw (re_remove "{" input))
@@ -55,7 +66,7 @@ let rec tokenize_niw input =
   else if re_match "/" input then Tok_Div::(tokenize_niw (re_remove "/" input))
   else if re_match "=" input then Tok_Assign::(tokenize_niw (re_remove "=" input)) *)
 
-  else raise (InvalidInputException("Could not tokenizer: " ^ input))
+  else raise (InvalidInputException("Could not tokenize: " ^ input))
 
 let rec tokenize input =
   tokenize_niw (Re.Str.substitute_first (Re.Str.regexp ("[ \t\n]*")) (fun s -> "") input)
