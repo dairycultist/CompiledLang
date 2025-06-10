@@ -22,7 +22,7 @@ type token =
   | Tok_CloseParen
   | Tok_Assign
   | Tok_Var of string
-  | Tok_Value of string
+  | Tok_Value of string (* includes all strings literals, numbers, booleans, and keywords GET and POST *)
 
 
 let re_match regex input = Re.Str.string_match (Re.Str.regexp regex) input 0
@@ -33,7 +33,7 @@ let rec tokenize_niw input =
 
   if String.length input = 0 then []
 
-  (* string literals and numbers *)
+  (* values *)
   else if re_match "\"[^\"]*\"\|-?[0-9]+\|true\|false\|GET\|POST" input then
     let x = Re.Str.matched_string input in
     (Tok_Value x)::(tokenize_niw (re_remove "\"[^\"]*\"\|-?[0-9]+\|true\|false\|GET\|POST" input))
