@@ -5,14 +5,14 @@ designed to easily process [HTTP Requests](https://www.w3schools.com/tags/ref_ht
 ```
 hostname "127.0.0.1";
 port 3000;
-auto_serve_files false; (* treats file requests as endpoints that must be manually processed by the programmer, rather than just responding with the file *)
+auto_serve_files false;
 
 onrequest GET "(filename).html" {
 
   respond 200 as "text/html" with readfile("src/" + filename + ".html");
 }
 
-onrequest GET(query = "/endpoint?value1=(msg)&value2=()") {
+onrequest GET "/endpoint?value1=(msg)&value2=()" {
 
   if (msg == "I hate cats") {
     respond 404 as "text/plain" with "You can't say that!";
@@ -23,6 +23,8 @@ onrequest GET(query = "/endpoint?value1=(msg)&value2=()") {
 ```
 
 `(name)` in a request description is a wildcard that matches to a variable named `name`. You can also use `()` for a wildcard that doesn't need to be assigned to a variable.
+
+If `auto_serve_files` is true, any requests for files will respond with the file instead of passing onto an `onrequest` function. If false, file requests are treated as endpoints that must be manually processed by the programmer.
 
 compiler written in OCaml which compiles code down to a [node.js webserver](https://www.geeksforgeeks.org/node-js/node-js-web-server/) (by stealing code from a previous project, hehe)
 
