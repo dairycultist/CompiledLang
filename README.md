@@ -37,8 +37,15 @@ onrequest GET "/endpoint?value1=(msg)&value2=()" {
 
   respond 200 as "text/plain" with "Cat here! You said " + msg;
 }
+
+onrequest GET "()" {
+
+  respond 404 as "text/html" with readfile("error.html");
+}
 ```
 
 `(name)` in a request description is a wildcard that matches to a variable named `name`. You can also use `()` for a wildcard that doesn't need to be assigned to a variable.
 
 If a request would be accepted by multiple `onrequest` functions, the topmost one is selected.
+
+Any request that is not accepted by any `onrequest` function is responded to with `404.html`.
