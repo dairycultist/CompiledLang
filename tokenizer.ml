@@ -35,13 +35,10 @@ let rec tokenize_niw input =
     | "hostname" -> (Tok_Hostname)                 ::(tokenize_niw (re_remove "hostname" input))
     | var -> (Tok_Var var)                         ::(tokenize_niw (re_remove var input))
 
-  (* string *)
-  else if re_match "\"([^\"\\]|\\.|\\\n)*\"" input then
-    (Tok_Value (Re.Str.matched_string input))      ::(tokenize_niw (re_remove "\"([^\"\\]|\\.|\\\n)*\"" input))
-
   (* numbers *)
   else if re_match "-?[0-9]+" input then
-    (Tok_Value (Re.Str.matched_string input))      ::(tokenize_niw (re_remove "-?[0-9]+" input))
+    let x = Re.Str.matched_string input in
+    (Tok_Value x)                                  ::(tokenize_niw (re_remove x input))
   
   (* non alphanumeric *)
   else if re_match ";" input then Tok_Semicolon    ::(tokenize_niw (re_remove ";" input))
