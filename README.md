@@ -4,7 +4,7 @@ designed to easily process [HTTP Requests](https://www.w3schools.com/tags/ref_ht
 
 ### Meta statements
 
-The following are meta statements, which inform your server on how it should run.
+The following are meta statements, which inform your server on how it should run. For tidiness, these should be placed at the very top of your file.
 
 ```
 hostname "127.0.0.1";
