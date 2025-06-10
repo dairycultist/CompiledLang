@@ -1,4 +1,5 @@
 #use "tokenizer.ml"
+#use "parser.ml"
 
 let read_whole_file path =
     let ch = open_in_bin path in
@@ -6,4 +7,4 @@ let read_whole_file path =
     close_in ch;
     s
 
-let compile path = let _ = print_endline "doing stuff" in tokenize (read_whole_file path)
+let compile path = let _ = print_endline "doing stuff" in parse (tokenize (read_whole_file path))

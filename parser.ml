@@ -67,3 +67,5 @@ and parse_stmt_hostname toks : stmt_result =
   let (toks, expr) = parse_expr toks in
   let toks = match_token toks Tok_Semicolon in
   (toks, [ Hostname(expr) ])
+
+let parse toks : stmt list = let (_, stmt_list) = parse_stmt toks in stmt_list
