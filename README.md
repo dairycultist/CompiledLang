@@ -40,7 +40,7 @@ onrequest GET "/endpoint?value1=(msg)&value2=()" {
 
 onrequest GET "()" {
 
-  respond 404 as "text/html" with readfile("error.html");
+  respond 404 as "text/html" with readfile("src/404.html");
 }
 ```
 
@@ -48,4 +48,4 @@ onrequest GET "()" {
 
 If a request would be accepted by multiple `onrequest` functions, the topmost one is selected.
 
-Any request that is not accepted by any `onrequest` function is responded to with `404.html`.
+Any request that is not accepted by any `onrequest` function is responded to with `404.html`, if it exists.
