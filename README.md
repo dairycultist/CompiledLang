@@ -1,4 +1,4 @@
-web content serving language (WCSL)
+# Web Content Serving Language (WCSL)
 
 designed to easily process [HTTP Requests](https://www.w3schools.com/tags/ref_httpmethods.asp) (for now just GET and POST)
 
@@ -40,7 +40,7 @@ onrequest GET "/endpoint?value1=(msg)&value2=()" {
 
 onrequest GET "()" {
 
-  respond 404 as "text/html" with readfile("src/404.html");
+  respond 404 as "text/html" with replace(readfile("src/404.html"), "<message>", "Get request did not match any endpoint.");
 }
 ```
 
