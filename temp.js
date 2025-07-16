@@ -1,6 +1,6 @@
 const { createServer } = require('node:http');
 
-const hostname = '127.0.0.1';
+const hostname = "127.0.0.1";
 const port = 3000;
 
 const colorDim = "\x1b[2m";
@@ -8,7 +8,7 @@ const colorReset = "\x1b[0m";
 const colorValue = "\x1b[32m";
 const colorError = "\x1b[31m";
 
-function respond(res, statusCode, contentType, content, logMessage = "_") {
+function respond(res, statusCode, contentType, content, logMessage) {
 
     // respond
     res.statusCode = statusCode;
@@ -30,7 +30,7 @@ const server = createServer((req, res) => {
     console.log(`${colorDim}=> ${colorReset + colorValue}${req.method} ${req.url}${colorReset}`);
     
     // respond
-    respond(res, 200, "text/plain", "Hello World");
+    respond(res, 200, "text/plain", "Hello World", "");
 });
 
 server.listen(port, hostname, () => {

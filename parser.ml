@@ -10,7 +10,6 @@ let lookahead (toks : token list) : token =
   | [] -> raise (InvalidInputException "No more tokens")
   | h::_ -> h
 
-
 (* Matches (and consumes) the next token in the list, throwing an error if it doesn't match the given token *)
 let match_token (toks : token list) (tok : token) : token list =
   match toks with
@@ -23,7 +22,6 @@ let consume_token (toks : token list) : token list =
   | [] -> raise (InvalidInputException("Empty token list when attempting to consume!"))
   | _::t -> t
 ;;
-
 
 #use "parser_expr.ml"
 #use "parser_stmt.ml"

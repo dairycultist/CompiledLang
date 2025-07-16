@@ -1,13 +1,5 @@
 #require "re"
-open Re
-
-(* https://ocaml.org/p/re/latest/doc/Re/Str/index.html *)
-
-(*
-  eval $(opam env)
-  dune runtest -f
-  dune utop src
-*)
+open Re (* https://ocaml.org/p/re/latest/doc/Re/Str/index.html *)
 
 exception InvalidInputException of string
 
@@ -15,6 +7,10 @@ type token =
   | Tok_Hostname
   | Tok_Port
   | Tok_OnRequest
+  | Tok_Respond
+  | Tok_RespondAs
+  | Tok_RespondWith
+  | Tok_RespondLog
   | Tok_Semicolon
   | Tok_OpenCurly
   | Tok_CloseCurly
@@ -46,6 +42,10 @@ let rec tokenize_niw input =
       | "hostname"          -> Tok_Hostname
       | "port"              -> Tok_Port
       | "onrequest"         -> Tok_OnRequest
+      | "respond"           -> Tok_Respond
+      | "as"                -> Tok_RespondAs
+      | "with"              -> Tok_RespondWith
+      | "log"               -> Tok_RespondLog
       | var                 -> Tok_Var var
     )::(tokenize_niw (re_remove x input))
   
