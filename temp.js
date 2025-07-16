@@ -13,7 +13,7 @@ const server = createServer((req, res) => {
     res.setHeader('Content-Type', 'text/plain');
     res.end('Hello World');
 
-    console.log(`${colorDim}[200]: ${colorReset + colorValue}GET /${colorReset}`);
+    console.log(`${colorDim}[200]: ${colorReset + colorValue}${req.method} ${req.url}${colorReset}`);
 });
 
 server.listen(port, hostname, () => {
