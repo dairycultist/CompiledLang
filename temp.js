@@ -8,6 +8,17 @@ const colorReset = "\x1b[0m";
 const colorValue = "\x1b[32m";
 const colorError = "\x1b[31m";
 
+
+
+function processGET(req, res) {
+
+    switch (req.url) {
+
+        case "/": respond(res, 200, "text/plain", "Hello World", "Serving index."); break;
+        default: respond(res, 404, "text/plain", "404", "Could not locate URL."); break;
+    }
+}
+
 function respond(res, statusCode, contentType, content, logMessage) {
 
     // respond
@@ -24,13 +35,24 @@ function respond(res, statusCode, contentType, content, logMessage) {
     }
 }
 
+
+
 const server = createServer((req, res) => {
 
     // log request
     console.log(`${colorDim}=> ${colorReset + colorValue}${req.method} ${req.url}${colorReset}`);
     
-    // respond
-    respond(res, 200, "text/plain", "Hello World", "");
+    switch (req.method) {
+
+        case "GET": processGET(req, res); break;
+        
+        default:
+            respond(res, 200, "text/plain",
+                `WSAS is currently unable to process ${req.method} requests.`,
+                `WSAS is currently unable to process ${req.method} requests.`
+            );
+            break;
+    }
 });
 
 server.listen(port, hostname, () => {
