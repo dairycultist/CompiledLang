@@ -22,8 +22,7 @@ function processGET(req, res) {
 function respond(res, statusCode, contentType, content, logMessage) {
 
     // respond
-    res.statusCode = statusCode;
-    res.setHeader("Content-Type", contentType);
+    res.writeHead(statusCode, { "Content-Type": contentType });
     res.end(content);
 
     // log response

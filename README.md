@@ -1,6 +1,6 @@
 # Web Server Architecture Script (WSAS)
 
-Designed to easily process [HTTP requests](https://www.w3schools.com/tags/ref_httpmethods.asp) (for now just GET and POST) and perform routine (scheduled) actions.
+WSAS keeps your data and server-side logic separate — unlike PHP. Designed to easily process [HTTP requests](https://www.w3schools.com/tags/ref_httpmethods.asp) and perform routine (scheduled) actions.
 
 Compiler written in OCaml which takes in a text file, tokenizes it, parses it to an AST, and interprets that tree to produce [node.js webserver code](https://www.geeksforgeeks.org/node-js/node-js-web-server/).
 
