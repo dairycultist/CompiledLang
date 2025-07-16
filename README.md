@@ -29,7 +29,7 @@ onrequest GET "(filename).html" {
 onrequest GET "/endpoint?value1=(msg)&value2=()" {
 
   if (msg == "I hate cats") {
-    respond 404 as "text/plain" with "You can't say that!";
+    respond 404 as "text/plain" with "You can't say that!" log "User illegally said they hate cats.";
   }
 
   respond 200 as "text/plain" with "Cat here! You said " + msg;
@@ -37,7 +37,7 @@ onrequest GET "/endpoint?value1=(msg)&value2=()" {
 
 onrequest GET "()" {
 
-  respond 404 as "text/html" with replace(readfile("src/404.html"), "<message>", "Get request did not match any endpoint.");
+  respond 404 as "text/html" with replace(readfile("src/404.html"), "<message>", "Get request did not match any endpoint.") log "Get request did not match any endpoint.";
 }
 ```
 
