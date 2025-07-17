@@ -47,12 +47,12 @@ and parse_stmt_port toks : stmt_result =
 
 and parse_stmt_on_request toks : stmt_result =
   let toks = match_token toks Tok_OnRequest in
-  let (toks, expr1) = parse_expr toks in (* GET/POST *)
-  let (toks, expr2) = parse_expr toks in (* query string *)
+  let (toks, httpMethod)  = parse_expr toks in (* GET/POST *)
+  let (toks, urlTemplate) = parse_expr toks in (* url/query string template *)
   let toks = match_token toks Tok_OpenCurly in
   let (toks, stmt_list) = parse_stmt toks in
   let toks = match_token toks Tok_CloseCurly in
-  (toks, [ OnRequest(expr1, expr2, stmt_list) ])
+  (toks, [ OnRequest(httpMethod, urlTemplate, stmt_list) ])
 
 and parse_stmt_respond toks : stmt_result =
   let toks = match_token toks Tok_Respond in

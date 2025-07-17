@@ -22,8 +22,7 @@ let compile in_path out_path : unit =
     let _ = print_endline (eval (parse (tokenize (read_whole_file in_path)))) in 
     ()
 
-
-
+(* run when compiled program is run through the commandline *)
 let () =
   if Array.length Sys.argv = 3
     then compile Sys.argv.(1) Sys.argv.(2)
