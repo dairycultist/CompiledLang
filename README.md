@@ -45,6 +45,6 @@ onrequest GET "()" {
 
 If a request would be accepted by multiple `onrequest` functions, the topmost one is selected.
 
-Any request that is not accepted by any `onrequest` function is responded to with `404.html`, if it exists.
+Any request that is not accepted by any `onrequest` function will respond with `Error 400: Bad Request`. To avoid this, ensure an `onrequest` function is implemented for every expected request.
 
 ## On Schedule functions
