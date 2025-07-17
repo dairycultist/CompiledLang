@@ -6,7 +6,7 @@ Compiler written in OCaml which takes in a text file, tokenizes it, parses it to
 
 ## Meta statements
 
-The following are meta statements, which inform your server on how it should run. For tidiness, these should be placed at the very top of your file.
+The following are meta statements, which inform your server on how it should run. For tidiness, these should (but need not) be placed at the very top of your file.
 
 ```
 hostname "localhost";
@@ -14,8 +14,8 @@ port 3000;
 auto_serve_files_in "./your/path/here/";
 ```
 
-- `hostname` is the IP of your server. This defaults to `localhost` if unspecified.
-- `port` is the port of your server. This defaults to `3000` if unspecified.
+- `hostname` is the IP of your server. This defaults to `localhost` if unspecified. Only one can be declared per program.
+- `port` is the port of your server. This defaults to `3000` if unspecified. Only one can be declared per program.
 - If `auto_serve_files_in` is set, any GET or HEAD requests for files within the path parameter will respond with the file if not handled by an `onrequest` function, rather than being treated as a 404 error (this is equivalent to implementing an `onrequest GET "<path>/()"` and `onrequest HEAD "<path>/()"` at the end of your WSAS file). Remember, all other file requests are treated as endpoints that must be manually processed by the programmer. `auto_serve_files_in` can be declared multiple times for as many paths as you wish.
 
 ## On Request functions
@@ -43,6 +43,6 @@ onrequest GET "()" {
 
 `(name)` in a request description is a wildcard that matches to a variable named `name`. You can also use `()` for a wildcard that doesn't need to be assigned to a variable.
 
-If a request would be accepted by multiple `onrequest` functions, the topmost one is selected. If the request does not call `respond` by the time it exits that function, however, it continues searching for the next `onrequest` function that will accept it (if any). Any request that is not accepted and responded to by any `onrequest` function will automatically be responded to with `Error 400: Bad Request`. To avoid this, ensure an `onrequest` function is implemented for every expected request. This ensures that all requests are responded to (i.e. no timeouts).
+If a request would be accepted by multiple `onrequest` functions, the topmost one is selected. If the request does not call `respond` by the time it exits that function, however, it continues searching for the next `onrequest` function that will accept it (if any). Any request that is not accepted and responded to by any `onrequest` function will automatically be responded to with `Error 400: Bad Request` (to avoid this, implement an `onrequest` function for every expected request). This ensures that all requests are responded to (i.e. no timeouts).
 
 ## On Schedule functions
