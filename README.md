@@ -11,12 +11,12 @@ The following are meta statements, which inform your server on how it should run
 ```
 hostname "localhost";
 port 3000;
-auto_serve_files false;
+auto_serve_files_in "./your/path/here/";
 ```
 
 - `hostname` is the IP of your server. This defaults to `localhost` if unspecified.
 - `port` is the port of your server. This defaults to `3000` if unspecified.
-- If `auto_serve_files` is `true`, any GET or HEAD requests for files will respond with the file instead of passing onto an `onrequest` function. If `false`, file requests are treated as endpoints that must be manually processed by the programmer. `auto_serve_files` defaults to `true` if unspecified.
+- If `auto_serve_files_in` is set, any GET or HEAD requests for files within the path parameter will respond with the file if not handled by an `onrequest` function (this is equivalent to implementing an `onrequest GET <path>/()` and `onrequest HEAD <path>/()` at the end of your WSAS file). Remember, all other file requests are treated as endpoints that must be manually processed by the programmer. `auto_serve_files_in` can be declared multiple times for as many paths as you wish.
 
 ## On Request functions
 
