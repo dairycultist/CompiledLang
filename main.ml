@@ -5,6 +5,7 @@
 (*
   eval $(opam env)
   dune utop .
+  node temp.js
 
   gotta find out how to compile the program
 *)

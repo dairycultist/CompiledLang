@@ -1,5 +1,8 @@
 exception DeclareException of string
 
+(*
+ * environment declaration and environment helpers
+ *)
 type environment = (string * string) list (* var * value, such as the hostname/port *)
 
 let rec throw_if_bound env id : unit =
@@ -17,13 +20,19 @@ let rec get_env_value env id fallback : string =
   | [] -> fallback
   | (s, v)::t -> if s = id then v else get_env_value t id fallback
 
-
-
+(*
+ * return: string representing the corresponding final node.js output for the input expression
+ *)
 let rec eval_expr expr : string =
   match expr with
   | Var(str) -> str
   | Value(str) -> str
 
+(*
+ * return: environment * string representing:
+ *         1) all environmental declarations and assignments, such as hostname and port
+ *         2) the corresponding final node.js output for the input statement list
+ *)
 let rec eval_stmt_list env s : environment * string =
   match s with
   | [] -> (env, "")
@@ -47,7 +56,14 @@ let rec eval_stmt_list env s : environment * string =
 *)
 let eval s : string =
   let (env, js) = eval_stmt_list [] s in
-  
+
+{|const { createServer } = require('node:http');
+
+const colorDim = "\x1b[2m";
+const colorReset = "\x1b[0m";
+const colorValue = "\x1b[32m";
+const colorError = "\x1b[31m";
+|} ^
   ("const hostname = " ^ (get_env_value env "hostname" "localhost") ^ ";\n") ^
   ("const port = " ^ (get_env_value env "port" "3000") ^ ";\n\n") ^
   js

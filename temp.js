@@ -1,14 +1,12 @@
-// node temp.js
-
 const { createServer } = require('node:http');
-
-const hostname = "localhost";
-const port = 3000;
 
 const colorDim = "\x1b[2m";
 const colorReset = "\x1b[0m";
 const colorValue = "\x1b[32m";
 const colorError = "\x1b[31m";
+
+const hostname = "localhost";
+const port = 3000;
 
 /*
  * helper functions
