@@ -43,8 +43,8 @@ onrequest GET "()" {
 
 `(name)` in a request description is a wildcard that matches to a variable named `name`. You can also use `()` for a wildcard that doesn't need to be assigned to a variable.
 
-If a request would be accepted by multiple `onrequest` functions, the topmost one is selected.
+If a request would be accepted by multiple `onrequest` functions, the topmost one is selected. If the request does not call `respond` by the time it exits that function, however, it continues searching for the next `onrequest` function that will accept it (if any). This ensures that all requests are responded to (i.e. no timeouts).
 
-Any request that is not accepted by any `onrequest` function will respond with `Error 400: Bad Request`. To avoid this, ensure an `onrequest` function is implemented for every expected request.
+Any request that is not accepted and responded to by any `onrequest` function will automatically be responded to with `Error 400: Bad Request`. To avoid this, ensure an `onrequest` function is implemented for every expected request.
 
 ## On Schedule functions
