@@ -1,6 +1,6 @@
 # Web Server Architecture Script (WSAS)
 
-WSAS keeps your data and server-side logic separate — unlike PHP. Designed to easily process [HTTP requests](https://www.w3schools.com/tags/ref_httpmethods.asp) and perform routine (scheduled) actions.
+WSAS keeps your data and server-side logic separate — unlike PHP. Designed to easily process [HTTP requests](https://www.w3schools.com/tags/ref_httpmethods.asp) and perform routine (scheduled) actions. WSAS's implementation prevents any requests from being ignored (i.e. all requests recieve a response, even if it's just to tell them they made a 400 Bad Request).
 
 Compiler written in OCaml which takes in a text file, tokenizes it, parses it to an AST, and interprets that tree to produce [node.js webserver code](https://www.geeksforgeeks.org/node-js/node-js-web-server/).
 
@@ -43,8 +43,6 @@ onrequest GET "()" {
 
 `(name)` in a request description is a wildcard that matches to a variable named `name`. You can also use `()` for a wildcard that doesn't need to be assigned to a variable.
 
-If a request would be accepted by multiple `onrequest` functions, the topmost one is selected. If the request does not call `respond` by the time it exits that function, however, it continues searching for the next `onrequest` function that will accept it (if any). This ensures that all requests are responded to (i.e. no timeouts).
-
-Any request that is not accepted and responded to by any `onrequest` function will automatically be responded to with `Error 400: Bad Request`. To avoid this, ensure an `onrequest` function is implemented for every expected request.
+If a request would be accepted by multiple `onrequest` functions, the topmost one is selected. If the request does not call `respond` by the time it exits that function, however, it continues searching for the next `onrequest` function that will accept it (if any). Any request that is not accepted and responded to by any `onrequest` function will automatically be responded to with `Error 400: Bad Request`. To avoid this, ensure an `onrequest` function is implemented for every expected request. This ensures that all requests are responded to (i.e. no timeouts).
 
 ## On Schedule functions
