@@ -14,9 +14,11 @@ port 3000;
 auto_serve_files_in "./your/path/here/";
 ```
 
-- `hostname` is the IP of your server. This defaults to `localhost` if unspecified. Only one can be declared per program.
-- `port` is the port of your server. This defaults to `3000` if unspecified. Only one can be declared per program.
-- If `auto_serve_files_in` is set, any GET or HEAD requests for files within the path parameter will respond with the file if not handled by an `onrequest` function, rather than being treated as a 404 error (this is equivalent to implementing an `onrequest GET "<path>/()"` and `onrequest HEAD "<path>/()"` at the end of your WSAS file). Remember, all other file requests are treated as endpoints that must be manually processed by the programmer. `auto_serve_files_in` can be declared multiple times for as many paths as you wish.
+| Statement | Use |
+|-----------|-----|
+| `hostname` | Indicates the IP of your server. This defaults to `localhost` if unspecified. Only one can be declared per program. |
+| `port`     | Indicates the port of your server. This defaults to `3000` if unspecified. Only one can be declared per program. |
+| `auto_serve_files_in` | Any GET or HEAD requests for files within the path parameter of `auto_serve_files_in` will respond with the file IF not handled by an `onrequest` function, rather than being treated as a 400 error (this is equivalent to implementing an `onrequest GET "<path>/()"` and `onrequest HEAD "<path>/()"` at the end of your WSAS file). Remember, all other file requests are treated as endpoints that must be manually processed by the programmer. `auto_serve_files_in` can be declared multiple times for as many paths as you wish. |
 
 ## On Request functions
 
