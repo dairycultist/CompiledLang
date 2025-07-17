@@ -14,4 +14,6 @@ let read_whole_file path =
     close_in ch;
     s
 
-let compile path = eval (parse (tokenize (read_whole_file path)))
+let compile path =
+    (* let _ = print_endline "Compiled to ./_build/out.js" in *)
+    eval (parse (tokenize (read_whole_file path)))
