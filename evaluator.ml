@@ -14,3 +14,4 @@ let rec throw_if_unbound env id =
 
 let rec eval_expr env t = ()
 let rec eval_stmt_list env s : environment = []
+let eval s = let _ = print_endline "Compiled to ./_build/out.js" in let _ = eval_stmt_list () s in ()
