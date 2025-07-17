@@ -6,3 +6,9 @@ onrequest GET "/" {
     print("hello");
     respond 200 as "text/plain" with "Hello world!" log "Message";
 }
+
+onrequest GET "/cat" {
+
+    print("meow");
+    respond 200 as "text/plain" with "Hello cat!" log "Message cat";
+}
