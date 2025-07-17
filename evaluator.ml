@@ -25,4 +25,4 @@ let rec eval_stmt_list env s : environment * string =
   return: string representing the corresponding final node.js output
 *)
 let eval s : string =
-  let _ = eval_stmt_list () s in "hi"
+  let (env, js) = eval_stmt_list () s in js
