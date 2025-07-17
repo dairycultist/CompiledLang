@@ -9,6 +9,6 @@ onrequest GET "/" {
 
 onrequest GET "/cat" {
 
-    print("meow");
+    print(true);
     respond 200 as "text/plain" with "Hello cat!" log "Message cat";
 }

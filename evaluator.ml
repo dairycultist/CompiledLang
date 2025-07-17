@@ -52,7 +52,7 @@ let rec eval_stmt_list env s tab : environment * string =
         let (env, body_str) = (eval_stmt_list env body (tab + 1)) in
         (env, (tabbing tab) ^ "if (req.method == \"" ^ (eval_expr httpMethod) ^ "\" && urlMatchesTemplate(req.url, " ^ (eval_expr urlTemplate) ^ "))\n" ^ (tabbing tab) ^ "{\n" ^ body_str ^ (tabbing tab) ^ "}\n\n")
 
-      | Print(expr) ->                                            (env, (tabbing tab) ^ "console.log(" ^ (eval_expr expr) ^ ")\n")
+      | Print(expr) ->                                            (env, (tabbing tab) ^ "console.log(\" · \" + " ^ (eval_expr expr) ^ ")\n")
       | Respond(statusCode, contentType, content, logMessage) ->  (env, (tabbing tab) ^ "respond(res, " ^ (eval_expr statusCode) ^ ", " ^ (eval_expr contentType) ^ ", " ^ (eval_expr content) ^ ", " ^ (eval_expr logMessage) ^ ");\n" ^ (tabbing tab) ^ "return;\n")
 
     )
