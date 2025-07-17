@@ -3,5 +3,6 @@ port 3000;
 
 onrequest GET "/" {
 
+    print("hello");
     respond 200 as "text/plain" with "Hello world!" log "Message";
 }

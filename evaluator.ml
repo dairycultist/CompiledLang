@@ -28,7 +28,8 @@ let rec eval_expr expr : string =
   | Var(str) -> str
   | Value(str) -> str
 
-(*
+(* TODO include tabbing as input
+ *
  * return: environment * string representing:
  *         1) all environmental declarations and assignments, such as hostname and port
  *         2) the corresponding final node.js output for the input statement list
@@ -47,7 +48,7 @@ let rec eval_stmt_list env s : environment * string =
         let (env, body_str) = (eval_stmt_list env body) in
         (env, "if (req.method == \"" ^ (eval_expr httpMethod) ^ "\" && urlMatchesTemplate(req.url, " ^ (eval_expr urlTemplate) ^ ")) {\n" ^ body_str ^ "} else ")
 
-      | Print(expr) ->                                            (env, "PRINT\n")
+      | Print(expr) ->                                            (env, "console.log(" ^ (eval_expr expr) ^ ")\n")
       | Respond(statusCode, contentType, content, logMessage) ->  (env, "respond(res, " ^ (eval_expr statusCode) ^ ", " ^ (eval_expr contentType) ^ ", " ^ (eval_expr content) ^ ", " ^ (eval_expr logMessage) ^ ");\n")
 
     )

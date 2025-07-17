@@ -25,6 +25,7 @@ let rec parse_stmt toks : stmt_result =
     | Tok_Hostname      -> parse_stmt_hostname toks
     | Tok_Port          -> parse_stmt_port toks
     | Tok_OnRequest     -> parse_stmt_on_request toks
+    | Tok_Print         -> parse_stmt_print toks
     | Tok_Respond       -> parse_stmt_respond toks
     | _ -> raise (InvalidInputException("Came across a non-statement while parsing statements!"))
   ) in
@@ -53,6 +54,14 @@ and parse_stmt_on_request toks : stmt_result =
   let (toks, stmt_list) = parse_stmt toks in
   let toks = match_token toks Tok_CloseCurly in
   (toks, [ OnRequest(httpMethod, urlTemplate, stmt_list) ])
+
+and parse_stmt_print toks : stmt_result =
+  let toks = match_token toks Tok_Print in
+  let toks = match_token toks Tok_OpenParen in
+  let (toks, expr) = parse_expr toks in
+  let toks = match_token toks Tok_CloseParen in
+  let toks = match_token toks Tok_Semicolon in
+  (toks, [ Print(expr) ])
 
 and parse_stmt_respond toks : stmt_result =
   let toks = match_token toks Tok_Respond in

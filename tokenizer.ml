@@ -7,6 +7,7 @@ type token =
   | Tok_Hostname
   | Tok_Port
   | Tok_OnRequest
+  | Tok_Print
   | Tok_Respond
   | Tok_RespondAs
   | Tok_RespondWith
@@ -44,6 +45,7 @@ let rec tokenize_niw input =
       | "hostname"          -> Tok_Hostname
       | "port"              -> Tok_Port
       | "onrequest"         -> Tok_OnRequest
+      | "print"             -> Tok_Print
       | "respond"           -> Tok_Respond
       | "as"                -> Tok_RespondAs
       | "with"              -> Tok_RespondWith
