@@ -1,6 +1,6 @@
 const { createServer } = require('node:http');
 
-const hostname = "127.0.0.1";
+const hostname = "localhost";
 const port = 3000;
 
 const colorDim = "\x1b[2m";
@@ -12,10 +12,10 @@ const colorError = "\x1b[31m";
 
 function processGET(req, res) {
 
-    switch (req.url) {
-
-        case "/": respond(res, 200, "text/plain", "Hello World", "Serving index."); break;
-        default: respond(res, 404, "text/plain", "404", "Could not locate URL."); break;
+    if (req.url == "/") {
+        respond(res, 200, "text/plain", "Hello World", "Serving index.");
+    } else {
+        respond(res, 404, "text/plain", "404", "Could not locate URL.");
     }
 }
 
@@ -44,9 +44,10 @@ const server = createServer((req, res) => {
     switch (req.method) {
 
         case "GET": processGET(req, res); break;
+        // TODO HEAD, POST
         
         default:
-            respond(res, 200, "text/plain",
+            respond(res, 501, "text/plain", // 501 = Not Implemented
                 `WSAS is currently unable to process ${req.method} requests.`,
                 `WSAS is currently unable to process ${req.method} requests.`
             );

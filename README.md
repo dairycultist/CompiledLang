@@ -9,14 +9,14 @@ Compiler written in OCaml which takes in a text file, tokenizes it, parses it to
 The following are meta statements, which inform your server on how it should run. For tidiness, these should be placed at the very top of your file.
 
 ```
-hostname "127.0.0.1";
+hostname "localhost";
 port 3000;
 auto_serve_files false;
 ```
 
 - `hostname` is the IP of your server. This defaults to `localhost` if unspecified.
-- `port` is the port of your server. This defaults to `443` (the standard for HTTPS) if unspecified.
-- If `auto_serve_files` is true, any requests for files will respond with the file instead of passing onto an `onrequest` function. If false, file requests are treated as endpoints that must be manually processed by the programmer. `auto_serve_files` defaults to true if unspecified.
+- `port` is the port of your server. This defaults to `3000` if unspecified.
+- If `auto_serve_files` is `true`, any GET or HEAD requests for files will respond with the file instead of passing onto an `onrequest` function. If `false`, file requests are treated as endpoints that must be manually processed by the programmer. `auto_serve_files` defaults to `true` if unspecified.
 
 ## On Request functions
 
