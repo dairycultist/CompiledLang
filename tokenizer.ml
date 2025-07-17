@@ -20,6 +20,8 @@ type token =
   | Tok_Var of string
   | Tok_Value of string (* includes all strings literals, numbers, booleans, and keywords GET and POST *)
 
+(* let string_of_token (t : token) : string = match t with
+  | Tok_For -> "Tok_For" *)
 
 let re_match regex input = Re.Str.string_match (Re.Str.regexp regex) input 0
 let re_remove regex input = Re.Str.substitute_first (Re.Str.regexp ("\\(" ^ regex ^ "\\)[ \t\n]*")) (fun s -> "") input

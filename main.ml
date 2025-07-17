@@ -1,5 +1,6 @@
 #use "tokenizer.ml"
 #use "parser.ml"
+#use "evaluator.ml"
 
 (*
   eval $(opam env)
@@ -13,4 +14,4 @@ let read_whole_file path =
     close_in ch;
     s
 
-let compile path = let _ = print_endline "doing stuff" in parse (tokenize (read_whole_file path))
+let compile path = let _ = print_endline "Compiled to ./_build/out.js" in let _ = eval_stmt_list [] (parse (tokenize (read_whole_file path))) in ()
