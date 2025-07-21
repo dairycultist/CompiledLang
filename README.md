@@ -48,3 +48,24 @@ onrequest GET "()" {
 If a request would be accepted by multiple `onrequest` functions, the topmost one is selected. If the request does not call `respond` by the time it exits that function, however, it continues searching for the next `onrequest` function that will accept it (if any). Any request that is not accepted and responded to by any `onrequest` function will automatically be responded to with `Error 400: Bad Request` (to avoid this, implement an `onrequest` function for every expected request). This ensures that all requests are responded to (i.e. no timeouts).
 
 ## On Schedule functions
+
+## Up next for implementation
+
+- How to handle `HEAD` requests
+- Alongside the bottom IO and data manipulation, need convenient methods for data processing (i.e. stepping through a text file)
+
+```
+variable = load_file_as_str("index.html"); // returns null on failure
+
+save_str_to_file("index.html", "data"); // return false on failure, true on success
+append_str_to_file("index.html", "data");
+
+variable = str_replace(variable, "target", "data");
+
+variable = str_inject_before(variable, "target", "data");
+
+function injectBefore(medium, target, data) {
+
+    return medium.replace(target, data + target);
+}
+```
